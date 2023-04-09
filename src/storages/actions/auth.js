@@ -1,16 +1,11 @@
 import axios from 'axios';
 
-const dummy = {
-  'email': 'me@icloud.com',
-  'password': '123',
-};
-
 const url = 'https://zany-gray-cobra-shoe.cyclic.app';
 
 export const login = data => async (dispatch, getState) => {
   try {
     dispatch({type: 'LOGIN_PENDING'});
-    const result = await axios.post(url + '/auth/login', dummy);
+    const result = await axios.post(url + '/auth/login', data);
     console.log(result);
     result.data.data && dispatch({type: 'LOGIN_SUCCESS', payload: result.data});
   } catch (err) {

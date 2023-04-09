@@ -6,7 +6,11 @@ import Icon from 'react-native-vector-icons/Ionicons';
 
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {useDispatch, useSelector} from 'react-redux';
-import {login, logout} from '../storages/actions/auth';
+import {logout} from '../storages/actions/auth';
+
+import LoginScreen from '../pages/LoginScreen';
+import RegisterScreen from '../pages/RegisterScreen';
+import ProfileScreen from '../pages/ProfileScreen';
 
 function HomeScreen() {
   return (
@@ -28,45 +32,6 @@ function MyRecipeScreen() {
   return (
     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
       <Text>My Recipe!</Text>
-    </View>
-  );
-}
-
-function ProfileScreen() {
-  const dispatch = useDispatch();
-  const auth = useSelector(state => state.auth);
-  const createTwoButtonAlert = () =>
-    Alert.alert('Alert', 'Logout?', [
-      {
-        text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
-        style: 'cancel',
-      },
-      {text: 'OK', onPress: () => dispatch(logout())},
-    ]);
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>{auth.data.data?.fullname ?? 'user'}'s Profile</Text>
-      <Icon
-        name="log-out-outline"
-        size={30}
-        color={'red'}
-        onPress={createTwoButtonAlert}
-      />
-    </View>
-  );
-}
-
-function LoginScreen() {
-  const dispatch = useDispatch();
-  const auth = useSelector(state => state.auth);
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <TouchableOpacity
-        style={{backgroundColor: '#EEC302'}}
-        onPress={() => dispatch(login())}>
-        <Text>{auth.isLoading ? 'Please wait...' : 'Touch to login'}</Text>
-      </TouchableOpacity>
     </View>
   );
 }
@@ -141,6 +106,11 @@ export default function Router() {
             options={{headerShown: false}}
           />
         )}
+        <Stack.Screen
+          name="RegisterScreen"
+          component={RegisterScreen}
+          options={{headerShown: false}}
+        />
       </Stack.Navigator>
     </NavigationContainer>
   );
