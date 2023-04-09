@@ -11,6 +11,7 @@ import {logout} from '../storages/actions/auth';
 import LoginScreen from '../pages/LoginScreen';
 import RegisterScreen from '../pages/RegisterScreen';
 import ProfileScreen from '../pages/ProfileScreen';
+import MyRecipeScreen from '../pages/MyRecipeScreen';
 
 function HomeScreen() {
   return (
@@ -28,13 +29,13 @@ function AddScreen() {
   );
 }
 
-function MyRecipeScreen() {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>My Recipe!</Text>
-    </View>
-  );
-}
+// function MyRecipeScreen() {
+//   return (
+//     <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
+//       <Text>My Recipe!</Text>
+//     </View>
+//   );
+// }
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
