@@ -45,7 +45,7 @@ function ProfileScreen() {
             borderRadius: 50,
           }}
         />
-        <Text style={{color: '#000000', marginTop: 20, fontSize: 20}}>
+        <Text style={{color: '#FFFFFF', marginTop: 20, fontSize: 20}}>
           {auth.data.data?.fullname ?? 'user'}
         </Text>
       </View>

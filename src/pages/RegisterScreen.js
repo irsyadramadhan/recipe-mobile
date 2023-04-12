@@ -4,7 +4,7 @@ import {
   Text,
   TouchableOpacity,
   TextInput,
-  Image,
+  ImageBackground,
   StatusBar,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
@@ -20,10 +20,13 @@ const RegisterScreen = ({navigation}) => {
         backgroundColor="transparent"
         translucent={true}
       />
-      <Image
-        source={require('../images/maincourse.jpg')}
-        style={{flex: 2, width: 420}}
-      />
+      <View style={{flex: 2}}>
+        <ImageBackground
+          source={require('../images/maincourse.jpg')}
+          style={{flex: 1, width: '100%', height: '100%'}}>
+          <Text>{}</Text>
+        </ImageBackground>
+      </View>
       <View
         style={{
           backgroundColor: '#f2f2f2',
@@ -37,18 +40,15 @@ const RegisterScreen = ({navigation}) => {
           style={{
             marginHorizontal: 20,
             marginTop: 20,
-            justifyContent: 'center',
-            alignItems: 'center',
           }}>
           <Text
             style={{
               fontSize: 25,
+              fontWeight: 'bold',
               color: '#EFC81A',
-              marginBottom: 20,
             }}>
-            Welcome new user!
+            Create Account
           </Text>
-          <Text style={{fontSize: 17}}>Create new account</Text>
         </View>
         <TextInput
           value={fullname}
@@ -100,7 +100,7 @@ const RegisterScreen = ({navigation}) => {
             paddingVertical: 15,
             borderRadius: 5,
           }}>
-          <Text style={{color: '#ffffff'}}>Sign Up</Text>
+          <Text style={{color: '#ffffff'}}>Create Account</Text>
         </TouchableOpacity>
         <View
           style={{
@@ -112,9 +112,14 @@ const RegisterScreen = ({navigation}) => {
           }}>
           <Text style={{fontSize: 15}}>Have account already?</Text>
           <Text
-            style={{color: '#EEC302', marginLeft: 5, fontSize: 15}}
+            style={{
+              color: '#EEC302',
+              marginLeft: 5,
+              fontSize: 15,
+              fontWeight: 'bold',
+            }}
             onPress={() => navigation.navigate('LoginScreen')}>
-            let's log in!
+            log in
           </Text>
         </View>
       </View>

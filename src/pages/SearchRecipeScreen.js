@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Text,
   View,
@@ -6,19 +6,19 @@ import {
   StatusBar,
   Image,
   TouchableOpacity,
+  TextInput,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {getMyRecipe} from '../storages/actions/recipe';
+import {getSearchRecipe} from '../storages/actions/recipe';
 
-const MyRecipeScreen = ({navigation}) => {
+const SearchRecipeScreen = ({navigation}) => {
   const dispatch = useDispatch();
-  const my_recipe = useSelector(state => state.my_recipe);
-  const token = useSelector(state => state.auth.data.data.token);
-  // console.log(my_recipe.data);
+  const search_recipe = useSelector(state => state.search_recipe);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
-    dispatch(getMyRecipe(token));
-  }, [dispatch, token]);
+    dispatch(getSearchRecipe(search));
+  }, [dispatch, search]);
   return (
     <View style={{flex: 1}}>
       <StatusBar
@@ -26,26 +26,22 @@ const MyRecipeScreen = ({navigation}) => {
         backgroundColor="transparent"
         translucent={true}
       />
-      <View
-        style={{
-          marginHorizontal: 20,
-          marginTop: 40,
-          justifyContent: 'center',
-          alignItems: 'center',
-        }}>
-        <Text
+      <View style={{marginVertical: 40, marginHorizontal: 10}}>
+        <TextInput
+          value={search}
+          onChangeText={text => setSearch(text)}
+          placeholder="Search"
           style={{
-            fontSize: 25,
-            fontWeight: 'bold',
-            color: '#EFC81A',
-            marginBottom: 20,
-          }}>
-          My Recipe
-        </Text>
+            backgroundColor: '#FFFFFF',
+            paddingLeft: 10,
+            elevation: 3,
+            borderRadius: 10,
+          }}
+        />
       </View>
       <FlatList
         style={{flex: 1}}
-        data={my_recipe.data}
+        data={search_recipe.data}
         renderItem={({item}) => (
           <TouchableOpacity
             onPress={() => {
@@ -77,4 +73,4 @@ const MyRecipeScreen = ({navigation}) => {
   );
 };
 
-export default MyRecipeScreen;
+export default SearchRecipeScreen;
