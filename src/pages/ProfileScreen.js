@@ -110,7 +110,7 @@ function ProfileScreen() {
           <Icon name="log-out-outline" size={20} color="red" />
           <View style={{justifyContent: 'center', alignItems: 'center'}}>
             <Text style={{color: 'red', marginLeft: 10, fontSize: 15}}>
-              Log Out
+              Logout
             </Text>
           </View>
         </TouchableOpacity>

@@ -40,3 +40,15 @@ export const getSearchRecipe = data => async (dispatch, getState) => {
     dispatch({type: 'GET_SEARCHRECIPE_ERROR'});
   }
 };
+
+export const getNewRecipe = () => async (dispatch, getState) => {
+  try {
+    dispatch({type: 'GET_NEWRECIPE_PENDING'});
+    const result = await axios.get(`${url}/recipe?sort=DESC&limit=3`);
+    result.data.data &&
+      dispatch({type: 'GET_NEWRECIPE_SUCCESS', payload: result.data.data});
+  } catch (err) {
+    console.log(err);
+    dispatch({type: 'GET_NEWRECIPE_ERROR'});
+  }
+};

@@ -35,7 +35,7 @@ const MyRecipeScreen = ({navigation}) => {
         }}>
         <Text
           style={{
-            fontSize: 25,
+            fontSize: 20,
             fontWeight: 'bold',
             color: '#EFC81A',
             marginBottom: 20,
