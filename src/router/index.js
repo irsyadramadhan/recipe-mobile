@@ -14,14 +14,7 @@ import MyRecipeScreen from '../pages/MyRecipeScreen';
 import DetailRecipeScreen from '../pages/DetailRecipeScreen';
 import SearchRecipeScreen from '../pages/SearchRecipeScreen';
 import HomeScreen from '../pages/HomeScreen';
-
-function AddScreen() {
-  return (
-    <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-      <Text>Add!</Text>
-    </View>
-  );
-}
+import AddScreen from '../pages/AddScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -106,6 +99,11 @@ export default function Router() {
         <Stack.Screen
           name="SearchRecipeScreen"
           component={SearchRecipeScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="MyRecipeScreen"
+          component={MyRecipeScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

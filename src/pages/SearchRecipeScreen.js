@@ -62,7 +62,7 @@ const SearchRecipeScreen = ({navigation}) => {
               style={{width: 100, height: 100, borderRadius: 5}}
             />
             <View style={{marginLeft: 20}}>
-              <Text style={{fontSize: 20}}>{item.title}</Text>
+              <Text style={{fontSize: 20, color: '#000000'}}>{item.title}</Text>
               <Text>{item.category}</Text>
             </View>
           </TouchableOpacity>

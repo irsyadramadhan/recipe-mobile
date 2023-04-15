@@ -8,17 +8,25 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {getMyRecipe} from '../storages/actions/recipe';
+import {getMyRecipe, deleteRecipe} from '../storages/actions/recipe';
+import Icon from 'react-native-vector-icons/Ionicons';
 
 const MyRecipeScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const my_recipe = useSelector(state => state.my_recipe);
   const token = useSelector(state => state.auth.data.data.token);
-  // console.log(my_recipe.data);
 
   useEffect(() => {
-    dispatch(getMyRecipe(token));
-  }, [dispatch, token]);
+    const reload = navigation.addListener('focus', () => {
+      dispatch(getMyRecipe(token));
+    });
+    return reload;
+  }, [dispatch, token, navigation]);
+
+  const deleteMyRecipe = id => {
+    dispatch(deleteRecipe(id, token));
+  };
+
   return (
     <View style={{flex: 1}}>
       <StatusBar
@@ -47,10 +55,7 @@ const MyRecipeScreen = ({navigation}) => {
         style={{flex: 1}}
         data={my_recipe.data}
         renderItem={({item}) => (
-          <TouchableOpacity
-            onPress={() => {
-              navigation.navigate('DetailRecipeScreen', {id: `${item.id}`});
-            }}
+          <View
             style={{
               flexDirection: 'row',
               backgroundColor: '#FFFFFF',
@@ -65,11 +70,28 @@ const MyRecipeScreen = ({navigation}) => {
               source={{uri: item.image}}
               style={{width: 100, height: 100, borderRadius: 5}}
             />
-            <View style={{marginLeft: 20}}>
-              <Text style={{fontSize: 20}}>{item.title}</Text>
-              <Text>{item.category}</Text>
+            <View>
+              <View style={{marginLeft: 20}}>
+                <Text style={{fontSize: 20, color: '#000000'}}>
+                  {item.title}
+                </Text>
+                <Text>{item.category}</Text>
+              </View>
+              <View
+                style={{flexDirection: 'row', marginLeft: 180, marginTop: 20}}>
+                <View style={{paddingHorizontal: 10}}>
+                  <TouchableOpacity>
+                    <Icon name="create" size={25} color="#ADD8E6" />
+                  </TouchableOpacity>
+                </View>
+                <View style={{paddingHorizontal: 10}}>
+                  <TouchableOpacity onPress={() => deleteMyRecipe(item.id)}>
+                    <Icon name="trash" size={25} color="red" />
+                  </TouchableOpacity>
+                </View>
+              </View>
             </View>
-          </TouchableOpacity>
+          </View>
         )}
         keyExtractor={item => item.id}
       />

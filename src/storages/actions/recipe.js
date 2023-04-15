@@ -5,7 +5,7 @@ const url = 'https://zany-gray-cobra-shoe.cyclic.app';
 export const getMyRecipe = token => async (dispatch, getState) => {
   try {
     let headers = {
-      headers: {"Authorization": `Bearer ${token}`}
+      headers: {"Authorization": `Bearer ${token}`},
     };
     dispatch({type: 'GET_MYRECIPE_PENDING'});
     const result = await axios.get(`${url}/recipe/myrecipe`, headers);
@@ -50,5 +50,39 @@ export const getNewRecipe = () => async (dispatch, getState) => {
   } catch (err) {
     console.log(err);
     dispatch({type: 'GET_NEWRECIPE_ERROR'});
+  }
+};
+
+export const addRecipe = (data, token) => async (dispatch, getState) => {
+  try {
+    let headers = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "Authorization": `Bearer ${token}`,
+      },
+    };
+    dispatch({type: 'ADD_RECIPE_PENDING'});
+    const result = await axios.post(`${url}/recipe`, data, headers);
+    result.data && dispatch({type: 'ADD_RECIPE_SUCCESS', payload: result.data});
+  } catch (err) {
+    console.log(err);
+    dispatch({type: 'ADD_RECIPE_ERROR'});
+  }
+};
+
+export const deleteRecipe = (id, token) => async (dispatch, getState) => {
+  try {
+    let headers = {
+      headers: {
+        "Authorization": `Bearer ${token}`,
+      },
+    };
+    dispatch({type: 'DELETE_RECIPE_PENDING'});
+    const result = await axios.delete(`${url}/recipe/${id}`, headers);
+    result.data &&
+      dispatch({type: 'DELETE_RECIPE_SUCCESS', payload: result.data});
+  } catch (err) {
+    console.log(err);
+    dispatch({type: 'DELETE_RECIPE_ERROR'});
   }
 };
