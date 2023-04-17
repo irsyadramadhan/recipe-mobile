@@ -2,7 +2,7 @@ const initialState = {
   data: null,
   isLoading: false,
   isError: false,
-  isSuccess: true,
+  isSuccess: false,
 };
 
 const add_recipe = (state = initialState, {type, payload}) => {
@@ -28,6 +28,14 @@ const add_recipe = (state = initialState, {type, payload}) => {
         data: payload,
         isLoading: false,
         isError: true,
+        isSuccess: false,
+      };
+    case 'ADD_RECIPE_RESET':
+      return {
+        ...state,
+        data: null,
+        isLoading: false,
+        isError: false,
         isSuccess: false,
       };
     default:

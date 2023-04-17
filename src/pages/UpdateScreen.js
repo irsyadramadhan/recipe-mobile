@@ -10,7 +10,7 @@ import {
   ScrollView,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {updateRecipe} from '../storages/actions/recipe';
+import {updateRecipe, updateRecipeReset} from '../storages/actions/recipe';
 import * as ImagePicker from 'react-native-image-picker';
 
 const UpdateScreen = ({navigation, route}) => {
@@ -29,6 +29,13 @@ const UpdateScreen = ({navigation, route}) => {
     });
     return reset;
   }, [navigation]);
+
+  useEffect(() => {
+    const reload = navigation.addListener('focus', () => {
+      dispatch(updateRecipeReset());
+    });
+    return reload;
+  }, [dispatch, navigation]);
 
   const postRecipe = async () => {
     let formData = new FormData();
@@ -231,6 +238,23 @@ const UpdateScreen = ({navigation, route}) => {
             {update_recipe.isLoading ? 'Updating your recipe..' : 'Update'}
           </Text>
         </TouchableOpacity>
+        <View
+          style={{
+            marginHorizontal: 20,
+            marginTop: 20,
+            marginBottom: 20,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          {update_recipe.isError && (
+            <Text style={{fontSize: 15, color: 'red'}}>
+              Update recipe failed!
+            </Text>
+          )}
+          {update_recipe.isSuccess && (
+            <Text style={{fontSize: 15, color: 'green'}}>Recipe updated!</Text>
+          )}
+        </View>
       </ScrollView>
     </View>
   );

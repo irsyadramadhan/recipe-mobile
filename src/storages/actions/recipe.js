@@ -1,6 +1,7 @@
 import axios from 'axios';
+import {API_KEY} from '@env';
 
-const url = 'https://zany-gray-cobra-shoe.cyclic.app';
+const url = API_KEY;
 
 export const getMyRecipe = token => async (dispatch, getState) => {
   try {
@@ -103,4 +104,16 @@ export const updateRecipe = (data, id, token) => async (dispatch, getState) => {
     console.log(err);
     dispatch({type: 'UPDATE_RECIPE_ERROR'});
   }
+};
+
+export const addRecipeReset = () => {
+  return (dispatch, getState) => {
+    dispatch({type: 'ADD_RECIPE_RESET'});
+  };
+};
+
+export const updateRecipeReset = () => {
+  return (dispatch, getState) => {
+    dispatch({type: 'UPDATE_RECIPE_RESET'});
+  };
 };

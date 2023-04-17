@@ -1,6 +1,7 @@
 import axios from 'axios';
+import {API_KEY} from '@env';
 
-const url = 'https://zany-gray-cobra-shoe.cyclic.app';
+const url = API_KEY;
 
 export const login = data => async (dispatch, getState) => {
   try {

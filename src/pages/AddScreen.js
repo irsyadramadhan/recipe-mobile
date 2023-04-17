@@ -10,7 +10,7 @@ import {
   ScrollView,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {addRecipe} from '../storages/actions/recipe';
+import {addRecipe, addRecipeReset} from '../storages/actions/recipe';
 import * as ImagePicker from 'react-native-image-picker';
 
 const AddScreen = ({navigation}) => {
@@ -28,6 +28,13 @@ const AddScreen = ({navigation}) => {
     });
     return reset;
   }, [navigation]);
+
+  useEffect(() => {
+    const reload = navigation.addListener('focus', () => {
+      dispatch(addRecipeReset());
+    });
+    return reload;
+  }, [dispatch, navigation]);
 
   const postRecipe = async () => {
     let formData = new FormData();
@@ -230,6 +237,23 @@ const AddScreen = ({navigation}) => {
             {add_recipe.isLoading ? 'Posting your recipe..' : 'Post'}
           </Text>
         </TouchableOpacity>
+        <View
+          style={{
+            marginHorizontal: 20,
+            marginTop: 20,
+            marginBottom: 20,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          {add_recipe.isError && (
+            <Text style={{fontSize: 15, color: 'red'}}>
+              Post recipe failed!
+            </Text>
+          )}
+          {add_recipe.isSuccess && (
+            <Text style={{fontSize: 15, color: 'green'}}>Recipe posted!</Text>
+          )}
+        </View>
       </ScrollView>
     </View>
   );
