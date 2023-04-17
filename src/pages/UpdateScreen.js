@@ -10,15 +10,23 @@ import {
   ScrollView,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
-import {updateRecipe, updateRecipeReset} from '../storages/actions/recipe';
+import {
+  updateRecipe,
+  updateRecipeReset,
+  getDetailRecipe,
+} from '../storages/actions/recipe';
 import * as ImagePicker from 'react-native-image-picker';
 
 const UpdateScreen = ({navigation, route}) => {
   const {id} = route.params;
   const dispatch = useDispatch();
   const token = useSelector(state => state.auth.data.data.token);
+  const detail = useSelector(state => state.detail_recipe);
   const update_recipe = useSelector(state => state.update_recipe);
-  const [response, setResponse] = useState(null);
+
+  useEffect(() => {
+    dispatch(getDetailRecipe(id));
+  }, [dispatch, id]);
 
   useEffect(() => {
     const reset = navigation.addListener('focus', () => {
@@ -116,6 +124,8 @@ const UpdateScreen = ({navigation, route}) => {
   const [title, setTitle] = useState('');
   const [categoryId, setCategoryId] = useState(null);
   const [ingredient, setIngredient] = useState('');
+  const [response, setResponse] = useState(null);
+
   return (
     <View style={{flex: 1}}>
       <StatusBar
@@ -137,7 +147,7 @@ const UpdateScreen = ({navigation, route}) => {
             color: '#EFC81A',
             marginBottom: 20,
           }}>
-          Update your Recipe
+          Update Recipe
         </Text>
       </View>
       <ScrollView style={{marginHorizontal: 20}}>
@@ -159,7 +169,7 @@ const UpdateScreen = ({navigation, route}) => {
         <TextInput
           value={title}
           onChangeText={text => setTitle(text)}
-          placeholder="Title"
+          placeholder={detail.data[0].title}
           style={{
             backgroundColor: '#f4f4f4',
             marginBottom: 20,
@@ -188,7 +198,7 @@ const UpdateScreen = ({navigation, route}) => {
           onChangeText={text => setIngredient(text)}
           multiline={true}
           numberOfLines={5}
-          placeholder="Ingredient"
+          placeholder={detail.data[0].ingredient}
           style={{
             backgroundColor: '#f4f4f4',
             marginBottom: 20,
