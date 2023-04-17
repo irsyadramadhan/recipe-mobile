@@ -6,7 +6,6 @@ import {getDetailRecipe} from '../storages/actions/recipe';
 const DetailRecipeScreen = ({route}) => {
   const dispatch = useDispatch();
   const detail_recipe = useSelector(state => state.detail_recipe);
-  console.log('check this', detail_recipe.data[0].title);
   const {id} = route.params;
 
   useEffect(() => {

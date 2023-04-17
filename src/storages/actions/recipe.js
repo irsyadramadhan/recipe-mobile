@@ -86,3 +86,21 @@ export const deleteRecipe = (id, token) => async (dispatch, getState) => {
     dispatch({type: 'DELETE_RECIPE_ERROR'});
   }
 };
+
+export const updateRecipe = (data, id, token) => async (dispatch, getState) => {
+  try {
+    let headers = {
+      headers: {
+        "Content-Type": "multipart/form-data",
+        "Authorization": `Bearer ${token}`,
+      },
+    };
+    dispatch({type: 'UPDATE_RECIPE_PENDING'});
+    const result = await axios.put(`${url}/recipe/${id}`, data, headers);
+    result.data &&
+      dispatch({type: 'UPDATE_RECIPE_SUCCESS', payload: result.data});
+  } catch (err) {
+    console.log(err);
+    dispatch({type: 'UPDATE_RECIPE_ERROR'});
+  }
+};

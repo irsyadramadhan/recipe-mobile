@@ -119,6 +119,17 @@ const LoginScreen = ({navigation}) => {
             create new account
           </Text>
         </View>
+        <View
+          style={{
+            marginHorizontal: 20,
+            marginTop: 20,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          {auth.isError && (
+            <Text style={{fontSize: 15, color: 'red'}}>{auth.data}</Text>
+          )}
+        </View>
       </View>
     </View>
   );

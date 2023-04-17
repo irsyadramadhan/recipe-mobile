@@ -1,5 +1,5 @@
 import * as React from 'react';
-import {Text, TouchableOpacity, View} from 'react-native';
+// import {Text, TouchableOpacity, View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Ionicons';
@@ -15,6 +15,7 @@ import DetailRecipeScreen from '../pages/DetailRecipeScreen';
 import SearchRecipeScreen from '../pages/SearchRecipeScreen';
 import HomeScreen from '../pages/HomeScreen';
 import AddScreen from '../pages/AddScreen';
+import UpdateScreen from '../pages/UpdateScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -73,7 +74,7 @@ export default function Router() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {auth.data ? (
+        {auth.isSuccess ? (
           <Stack.Screen
             name="BottomNav"
             component={BottomNav}
@@ -104,6 +105,11 @@ export default function Router() {
         <Stack.Screen
           name="MyRecipeScreen"
           component={MyRecipeScreen}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="UpdateScreen"
+          component={UpdateScreen}
           options={{headerShown: false}}
         />
       </Stack.Navigator>

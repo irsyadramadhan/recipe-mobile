@@ -6,6 +6,8 @@ import search_recipe from './searchRecipe';
 import new_recipe from './newRecipe';
 import add_recipe from './addRecipe';
 import delete_recipe from './deleteRecipe';
+import update_recipe from './updateRecipe';
+import register from './register';
 
 const appReducers = combineReducers({
   auth,
@@ -15,6 +17,8 @@ const appReducers = combineReducers({
   new_recipe,
   add_recipe,
   delete_recipe,
+  update_recipe,
+  register,
 });
 
 export default appReducers;

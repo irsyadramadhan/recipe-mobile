@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   View,
   Text,
@@ -8,11 +8,27 @@ import {
   StatusBar,
 } from 'react-native';
 import {useDispatch, useSelector} from 'react-redux';
+import {register, registerReset} from '../storages/actions/auth';
 
 const RegisterScreen = ({navigation}) => {
+  const dispatch = useDispatch();
+  const registerState = useSelector(state => state.register);
   const [fullname, setFullname] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const postData = text => {
+    text.preventDefault();
+    let data = {fullname, email, password};
+    dispatch(register(data));
+  };
+
+  useEffect(() => {
+    const reload = navigation.addListener('focus', () => {
+      dispatch(registerReset());
+    });
+    return reload;
+  }, [dispatch, navigation]);
+
   return (
     <View style={{flex: 1}}>
       <StatusBar
@@ -99,8 +115,11 @@ const RegisterScreen = ({navigation}) => {
             alignItems: 'center',
             paddingVertical: 15,
             borderRadius: 5,
-          }}>
-          <Text style={{color: '#ffffff'}}>Create Account</Text>
+          }}
+          onPress={postData}>
+          <Text style={{color: '#ffffff'}}>
+            {registerState.isLoading ? 'Creating account..' : 'Create Account'}
+          </Text>
         </TouchableOpacity>
         <View
           style={{
@@ -121,6 +140,22 @@ const RegisterScreen = ({navigation}) => {
             onPress={() => navigation.navigate('LoginScreen')}>
             log in
           </Text>
+        </View>
+        <View
+          style={{
+            marginHorizontal: 20,
+            marginTop: 20,
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}>
+          {registerState.isError && (
+            <Text style={{fontSize: 15, color: 'red'}}>
+              {registerState.data}
+            </Text>
+          )}
+          {registerState.isSuccess && (
+            <Text style={{fontSize: 15, color: 'green'}}>Account created!</Text>
+          )}
         </View>
       </View>
     </View>

@@ -5,16 +5,16 @@ const initialState = {
   isSuccess: false,
 };
 
-const auth = (state = initialState, {type, payload}) => {
+const register = (state = initialState, {type, payload}) => {
   switch (type) {
-    case 'LOGIN_PENDING':
+    case 'REGISTER_PENDING':
       return {
         ...state,
         isLoading: true,
         isError: false,
         isSuccess: false,
       };
-    case 'LOGIN_SUCCESS':
+    case 'REGISTER_SUCCESS':
       return {
         ...state,
         data: payload,
@@ -22,7 +22,7 @@ const auth = (state = initialState, {type, payload}) => {
         isError: false,
         isSuccess: true,
       };
-    case 'LOGIN_ERROR':
+    case 'REGISTER_ERROR':
       return {
         ...state,
         data: payload,
@@ -30,7 +30,7 @@ const auth = (state = initialState, {type, payload}) => {
         isError: true,
         isSuccess: false,
       };
-    case 'DELETE_STORE_TOKEN':
+    case 'REGISTER_RESET':
       return {
         ...state,
         data: null,
@@ -43,4 +43,4 @@ const auth = (state = initialState, {type, payload}) => {
   }
 };
 
-export default auth;
+export default register;

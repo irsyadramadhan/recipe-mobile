@@ -15,6 +15,7 @@ const MyRecipeScreen = ({navigation}) => {
   const dispatch = useDispatch();
   const my_recipe = useSelector(state => state.my_recipe);
   const token = useSelector(state => state.auth.data.data.token);
+  const delete_recipe = useSelector(state => state.delete_recipe);
 
   useEffect(() => {
     const reload = navigation.addListener('focus', () => {
@@ -22,6 +23,10 @@ const MyRecipeScreen = ({navigation}) => {
     });
     return reload;
   }, [dispatch, token, navigation]);
+
+  useEffect(() => {
+    dispatch(getMyRecipe(token));
+  }, [dispatch, token, delete_recipe.data]);
 
   const deleteMyRecipe = id => {
     dispatch(deleteRecipe(id, token));
@@ -80,7 +85,10 @@ const MyRecipeScreen = ({navigation}) => {
               <View
                 style={{flexDirection: 'row', marginLeft: 180, marginTop: 20}}>
                 <View style={{paddingHorizontal: 10}}>
-                  <TouchableOpacity>
+                  <TouchableOpacity
+                    onPress={() => {
+                      navigation.navigate('UpdateScreen', {id: `${item.id}`});
+                    }}>
                     <Icon name="create" size={25} color="#ADD8E6" />
                   </TouchableOpacity>
                 </View>
