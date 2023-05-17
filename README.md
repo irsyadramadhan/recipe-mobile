@@ -1,4 +1,4 @@
-# recipe-mobile
+# Recipe Mobile
 
 ## Table of Contents
 
@@ -13,7 +13,7 @@
 
 ## About the Project
 
-recipe-mobile is a mobile android recipe sharing application, where users can post, update, and delete their recipes.
+Recipe Mobile is a mobile android recipe sharing application, where users can post, update, and delete their recipes.
 
 ## Tech Stack
 
@@ -68,7 +68,7 @@ git clone https://github.com/irsyadramadhan/recipe-mobile.git
 2. Change directory
 
 ```
-cd recipe_mobile
+cd recipe-mobile
 ```
 
 3. Install dependencies
