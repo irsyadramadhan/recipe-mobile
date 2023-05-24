@@ -58,7 +58,7 @@ npm install
 4. Add environment variables
 
 ```
-API_KEY=https://zany-gray-cobra-shoe.cyclic.app/
+API_KEY=https://zany-gray-cobra-shoe.cyclic.app
 ```
 
 5. Start app in development server
