@@ -1,63 +1,41 @@
-# Recipe Mobile
+<div align="center">
+  <img width="100" height="100" src="https://res.cloudinary.com/dlv8ulgc0/image/upload/v1684899445/Logo/logo-recipes_cvacpf.png"/>
+  <p>Recipe Mobile</p>
+</div>
 
 ## Table of Contents
 
 1. [About the Project](#about-the-project)
-2. [Tech Stack](#tech-stack)
-3. [Packages](#packages)
-4. [Features](#features)
-5. [Env Variables](#env-variables)
-6. [APK File](#apk-file)
-7. [Run in Local Machine](#run-in-local-machine)
-8. [Screenshots](#screenshots)
+2. [Getting Started](#getting-started)
+3. [Screenshots](#screenshots)
+4. [Contribute](#contribute)
+5. [Related Project](#related-project)
+6. [Developers](#developers)
+7. [License](#license)
 
 ## About the Project
 
 Recipe Mobile is a mobile android recipe sharing application, where users can post, update, and delete their recipes.
 
-## Tech Stack
+### Tech Stack
 
-- Node JS
-- Express JS
-- PostgreSQL
-- React Native
+- [Node JS](https://nodejs.org/en)
+- [Express JS](https://expressjs.com/)
+- [PostgreSQL](https://www.postgresql.org/)
+- [React Native](https://reactnative.dev/)
 
-## Packages
-
-- react-native-async-storage/async-storage
-- react-navigation/bottom-tabs
-- react-navigation/native
-- react-navigation/native-stack
-- axios
-- react
-- react-native
-- react-native-dotenv
-- react-native-image-picker
-- react-native-safe-area-context
-- react-native-screens
-- react-native-vector-icons
-- react-redux
-- redux
-- redux-logger
-- redux-persist
-- redux-thunk
-
-## Features
-
-- CRUD
-- File Upload
-- Authentication / User Login
-- Authorization
-
-## Env Variables
-
-- API_KEY
-
-## APK File
+### APK File
 
 - [app-release](https://github.com/irsyadramadhan/recipe-mobile/tree/main/apk)
 
-## Run in Local Machine
+## Getting Started
+
+### Prerequisites
+
+- [Node JS](https://nodejs.org/en)
+- [Android Studio](https://developer.android.com/)
+
+### Installation
 
 1. Clone repository
 
@@ -77,7 +55,13 @@ cd recipe-mobile
 npm install
 ```
 
-4. Start app in development server
+4. Add environment variables
+
+```
+API_KEY=https://zany-gray-cobra-shoe.cyclic.app/
+```
+
+5. Start app in development server
 
 ```
 npm run android
@@ -92,3 +76,38 @@ npm run android
 | Details | Post | User's Recipe | Profile |
 | ----------- | ----------- | ----------- | ----------- |
 | ![details](https://github.com/irsyadramadhan/recipe-mobile/blob/main/src/screenshots/details.png) | ![post](https://github.com/irsyadramadhan/recipe-mobile/blob/main/src/screenshots/post.png) | ![myrecipe](https://github.com/irsyadramadhan/recipe-mobile/blob/main/src/screenshots/myrecipe.png) | ![profile](https://github.com/irsyadramadhan/recipe-mobile/blob/main/src/screenshots/profile.png) |
+
+## Contribute
+
+1. Fork this project
+2. Create new branch
+
+```
+git checkout -b feature/NewFeature
+```
+
+3. Commit changes
+
+```
+git commit -m "Add some NewFeature"
+```
+
+4. Push to origin
+
+```
+git push origin feature/NewFeature
+```
+
+5. Open pull request
+
+## Related Project
+
+- [recipe-app-backend](https://github.com/irsyadramadhan/recipe-app-backend)
+
+## Developers
+
+- [Irsyad Ramadhan](https://github.com/irsyadramadhan)
+
+## License
+
+Distributed under the [MIT](/LICENSE) License.
