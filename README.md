@@ -26,7 +26,7 @@ Recipe Mobile is a mobile android recipe sharing application, where users can po
 
 ### APK File
 
-- [app-release](https://drive.google.com/file/d/14S95JiSX2GWEyYy0da9tj8zKVHMNlgUk/view?usp=sharing)
+- [app-release](https://github.com/irsyadramadhan/apk/tree/main/recipe)
 
 ## Getting Started
 
