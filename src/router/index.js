@@ -16,6 +16,7 @@ import SearchRecipeScreen from '../pages/SearchRecipeScreen';
 import HomeScreen from '../pages/HomeScreen';
 import AddScreen from '../pages/AddScreen';
 import UpdateScreen from '../pages/UpdateScreen';
+import SplashScreen from '../pages/SplashScreen';
 
 const Tab = createBottomTabNavigator();
 const Stack = createNativeStackNavigator();
@@ -73,7 +74,9 @@ export default function Router() {
   const auth = useSelector(state => state.auth);
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        initialRouteName="SplashScreen"
+        screenOptions={{headerShown: false}}>
         {auth.isSuccess ? (
           <Stack.Screen
             name="BottomNav"
@@ -81,11 +84,18 @@ export default function Router() {
             options={{headerShown: false}}
           />
         ) : (
-          <Stack.Screen
-            name="LoginScreen"
-            component={LoginScreen}
-            options={{headerShown: false}}
-          />
+          <>
+            <Stack.Screen
+              name="LoginScreen"
+              component={LoginScreen}
+              options={{headerShown: false}}
+            />
+            <Stack.Screen
+              name="SplashScreen"
+              component={SplashScreen}
+              options={{headerShown: false}}
+            />
+          </>
         )}
         <Stack.Screen
           name="RegisterScreen"
